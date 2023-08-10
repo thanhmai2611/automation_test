@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class Assignment6 {
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "D:\\Learn\\AutomationTest\\chromedriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/Users/mainguyen/Documents/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
