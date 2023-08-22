@@ -1,6 +1,5 @@
-package ElementOnWeb;
+package Practise;
 
-import jdk.jfr.Timespan;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,13 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.thread.IThreadWorkerFactory;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
-import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofSeconds;
 
 public class Assignment3 {
@@ -59,4 +58,38 @@ public class Assignment3 {
     }
 
 
+    public static class Assignment4 {
+        public static void main(String[] args) {
+            System.setProperty("webdriver.chrome.driver", "/Users/mainguyen/Documents/chromedriver");
+            WebDriver driver = new ChromeDriver();
+            driver.get("https://the-internet.herokuapp.com/");
+            driver.findElement(By.cssSelector("a[href='/windows']")).click();
+            driver.findElement(By.cssSelector("a[href='/windows/new']")).click();
+            Set<String> window = driver.getWindowHandles();
+            Iterator<String> a = window.iterator();
+            String parentId = a.next();
+            String childId = a.next();
+            driver.switchTo().window(childId);
+            System.out.println(driver.findElement(By.cssSelector("div.example")).getText());
+            driver.switchTo().window(parentId);
+            System.out.println(driver.findElement(By.cssSelector("div.example h3")).getText());
+        }
+
+
+
+    }
+
+    public static class Assignment5 {
+        public static void main(String[] args) {
+            System.setProperty("webdriver.chrome.driver", "/Users/mainguyen/Documents/chromedriver");
+            WebDriver driver = new ChromeDriver();
+            driver.get("https://the-internet.herokuapp.com/");
+            driver.findElement(By.linkText("Nested Frames")).click();
+            driver.switchTo().frame("frame-top");
+            driver.switchTo().frame("frame-middle");
+            System.out.println(driver.findElement(By.id("content")).getText());
+            driver.quit();
+
+        }
+    }
 }
